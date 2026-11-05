@@ -17,6 +17,8 @@ return new class extends Migration
             $table->foreignId('subcategory_id');
             $table->string('name',100);
             $table->string('slug')->unique();
+            $table->string('description',200)->nullable();
+            $table->string('image')->nullable();
             $table->decimal('old_price', 8,2)->nullable();
             $table->decimal('new_price', 8,2);
 
