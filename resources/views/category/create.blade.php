@@ -28,8 +28,9 @@
     <form action="{{ route('category.store') }}" method="POST">
         @csrf
          Category Name: 
-        <input type="text" name="name" placeholder=" Enter Category Name"> <br> <br>
+        <input type="text" name="name" placeholder=" Enter Category Name" value="{{ old('name') }}"> <br> <br>
         <input type="submit" value="Submit">
+        <a href="{{ route('category.index') }}" type="button">Cancel</a>
 
     </form>
 </body>

@@ -59,7 +59,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('category.edit', ['category'=>$category]);
     }
 
     /**
@@ -67,7 +67,23 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        //     $validatedData = $request->validate([
+        //     'name'=>'required|unique:categories,name'
+        // ]);
+
+        // $validatedData['slug']= Str::slug($request->name);
+
+        // $category::updated($validatedData);
+        //  return redirect()->back()->with('success','Successfully Updated');
+
+         $validatedData = $request->validate([
+            'name'=>'required|unique:categories,name'
+        ]);
+        $category->name = $request->name;
+        $category->slug = Str::slug($request->name);
+        $category->update();
+
+        return redirect()->back()->with('success','Successfully Added');
     }
 
     /**
@@ -75,6 +91,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        $category->delete();
+        return redirect()->back()->with('success', 'Deleted');
     }
 }
